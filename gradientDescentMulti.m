@@ -11,7 +11,6 @@ new_theta = zeros(n,1);
 sums = zeros(n,1);
 
 for iter = 1:num_iters
-    new_theta
 
     % ====================== YOUR CODE HERE ======================
     % Instructions: Perform a single gradient step on the parameter vector
@@ -22,23 +21,23 @@ for iter = 1:num_iters
     %
      
     %update all thetas simultaneously
+    %so, for each feature
     for iter_n = 1:n % feature
 
-      %sum((htheta(xi)-yi)*xji)  for i = 1..m
+      _sum = 0;
       for iter_m = 1:m % 
-        theta
-        _sample = X(iter_m,:)             % the mth row of X
+        _sample = X(iter_m,:);             % the mth row of 
         _htheta = (_sample * theta);      % h(_sample)   our hypothesis for the sample based on theta
-        _answer = y(iter_m)               % y(_sample)   the real answer
-        _diff = _htheta - _answer         % h(_sample) - y(_sample)   the difference between our hypothesis and real anaswer
-        _feature = _sample(iter_n)        % nth feature of _sample    the feature this theta deals with
-        sums(iter_n) += _diff * _feature;
+        _answer = y(iter_m);               % y(_sample)   the real answer
+        _diff = _htheta - _answer;         % h(_sample) - y(_sample)   the difference between our hypothesis and real anaswer
+        _feature = _sample(iter_n);        % nth feature of _sample    the feature this theta deals with
+        _sum += _diff * _feature;
       end
-      new_theta(iter_n) = theta(iter_n) - alpha*(1/m) * sums(iter_n);
+      new_theta(iter_n) = theta(iter_n) - alpha* (1/m) * _sum;
     end
 
     %set new theta
-    theta = new_theta
+    theta = new_theta;
     % ============================================================
 
     % Save the cost J in every iteration    
